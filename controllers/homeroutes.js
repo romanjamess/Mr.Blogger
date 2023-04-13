@@ -26,26 +26,27 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get("/newpost" , async (req, res) => {
-//   res.render("createpost");
-// })
-
 
 router.get('/post/:id', async (req, res) => {
   try {
-    const projectData = await Post.findByPk(req.params.id, {
+    const postData = await Post.findByPk(req.params.id, {
       include: [
+        User,
         {
-          model: User,
-          attributes: ['name'],
+          model: Comment,
+          include: [ User],
         },
       ],
     });
+    if (!postData) {
+      res.status(404).json({ message: 'Trying to print one post -- No post with that id!' });
+      return;
+    }
 
-    const post = projectData.get({ plain: true });
+    const post = postData.get({ plain: true });
 
     res.render('singlepost', {
-      ...post,
+      post,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -54,24 +55,24 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/dashboard', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
-    });
+// router.get('/dashboard', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Post }],
+//     });
 
-    const user = userData.get({ plain: true });
+//     const user = userData.get({ plain: true });
 
-    res.render('createpost', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('createpost', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

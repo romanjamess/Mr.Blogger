@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Mr.blogger!</title>
+  <link rel="stylesheet" href="/public/stylesheets/style.css">
+  {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"> --}}
+
+</head>
+<body>
+    <header>
+      <nav>
+        <ul class = "row">
+          <li><a href="/">Home</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+          {{!-- {{#if logged_in}} --}}
+          <li><a href="/" id="logout">Logout</a></li>
+          {{!-- {{else}} --}}
+          {{!-- <li><a href="/login">Login</a></li> --}}
+          {{!-- {{/if}} --}}
+        </ul>
+      </nav>
+      <div class="title">
+        <h1>The Tech Blog</h1>
+      </div>
+
+    </header>
+
+    <main class="container-fluid m-5">
+      <!-- Render the sub layout -->
+    {{{ body }}}
+    </main>
+    <footer>
+      <a href="/dashboard/newpost">Create Post</a>
+    </footer>
+
+  <!-- Render script for logged in users only -->
+
+<script src="/js/logout.js"></script>
+{{!-- {{/if}} --}}
+</body>
+
+</html>
