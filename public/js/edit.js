@@ -14,12 +14,15 @@ const deletePostHandler = async (event) => {
     event.preventDefault();
     const post_id = document.querySelector('input[name="post-id"]').value;
     const title = document.querySelector('input[name="title-input"]').value.trim();
-    const body = document.querySelector('input[name="content-input"]').value.trim(); 
+    const content = document.querySelector('input[name="content-input"]').value.trim(); 
+    console.log(title , content, post_id);
+    
     await fetch(`/api/post/${post_id}`, {
       method: 'PUT',
-      body: JSON.stringify({ title, body }),
+      body: JSON.stringify({ title, content }),
       headers: { 'Content-Type': 'application/json' },
     })
+    
     document.location.replace('/dashboard');
   }
   

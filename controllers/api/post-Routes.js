@@ -16,4 +16,16 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+router.put("/:id", withAuth, async (req, res)=> {
+  try{
+    // console.log(postData)
+    const postData = await Post.update(req.body, {id: req.params.id});
+   
+     res.status(200).json(postData); 
+  } catch(err){
+   res.status(400).json(err)
+  }
+});
+
+
 module.exports = router
