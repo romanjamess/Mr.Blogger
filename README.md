@@ -17,7 +17,7 @@
 
   ## installtion
 
-  To install run; no installation is required, i am currently working on deploying it to heroku!
+  To install run; no installation is required, just go here https://stormy-mesa-24238.herokuapp.com/
 
   
 
