@@ -23,10 +23,7 @@
 
   ## usage
  The Usage of this app you must first sign up then login, once that is done you can now view other users post on the homepage and your own when you navigate to dashboard. Logining in also gives you the ability to create, edit and comment on to others as well as your own!
-  
-  ## MockUP
-  
-
+ 
   ## license
 
         this is project is licensed under MIT
